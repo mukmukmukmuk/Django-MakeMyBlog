@@ -19,5 +19,5 @@ from . import views
 
 urlpatterns = [
     path('',views.PostList.as_view()), #blog.urls.py로 위임
-    path('<int:pk>/',views.single_post_page)
+    path('<int:pk>/',views.PostDetail.as_view())
 ]
