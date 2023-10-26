@@ -4,7 +4,7 @@
   {% if post_list.exists %}
     {% for p in post_list %}
     <!--Blog Post start-->
-    <div class="card mb-4">
+    <div class="card mb-4" id="post-{{ p.pk }}">
       <a href="{{p.get_absolute_url}}">
         {% if p.head_image %}
           <img
@@ -21,6 +21,11 @@
         {% endif %}
       </a>
       <div class="card-body">
+        {% if p.category %}
+          <span class="badge badge-secondary float-right">{{ p.category }}</span>
+        {% else %}
+          <span class="badge badge-secondary float-right">미분류</span>
+        {% endif %}
         <div class="small text-muted">{{p.created_at}} by
           <a href="#">{{p.author | upper}}</a>
         </div>
