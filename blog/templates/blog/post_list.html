@@ -26,9 +26,9 @@
       </a>
       <div class="card-body">
         {% if p.category %}
-          <span class="badge badge-secondary float-right">{{ p.category }}</span>
+          <span class="badge bg-success float-end mt-3">{{ p.category }}</span>
         {% else %}
-          <span class="badge badge-secondary float-right">미분류</span>
+          <span class="badge bg-success float-end mt-3">미분류</span>
         {% endif %}
         <div class="small text-muted">{{p.created_at}} by
           <a href="#">{{p.author | upper}}</a>
@@ -41,6 +41,18 @@
         <p class="card-text">
           {{p.content| truncatewords:45}}
         </p>
+
+        {% if p.tags.exits %}
+          <i class="fa-solid fa-tags"></i>
+          {% for tag in p.tags.all %}
+             <a href="{{ tag.get_absolute_url }}">
+               <span class="badge bg-secondary">{{ tag }}</span>
+             </a>
+          {% endfor %}
+          <br>
+          <br>
+        {% endif %}
+
         <a class="btn btn-primary" href="{{p.get_absolute_url}}">Read more →</a>
       </div>
     </div>

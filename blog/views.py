@@ -1,5 +1,5 @@
 from django.views.generic import ListView,DetailView
-from .models import Post,Category
+from .models import Post,Category,Tag
 from django.shortcuts import render
 #def index(request):
 #    posts=Post.objects.all().order_by('-pk')
