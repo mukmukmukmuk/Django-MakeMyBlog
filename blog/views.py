@@ -31,6 +31,22 @@ def category_page(request,slug):
         }
     )
 
+def tag_page(request,slug):
+    tag=Tag.objects.get(slug=slug)
+    post_list=tag.post_set.all()
+    #post_list=Post.objects.filter(tags=tag)
+
+    return render(
+        request,
+        'blog/post_list.html',
+        {
+            'post_list' : post_list,
+            'tag' : tag,
+            'categories' : Category.objects.all(),
+            'no_category_post_count' : Post.objects.filter(category=None).count(),
+        }
+    )
+
 class PostList(ListView):
     model=Post
     ordering = '-pk'

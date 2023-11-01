@@ -4,6 +4,9 @@
       {% if category %}
         <span class="badge bg-success">{{ category }}</span>
       {% endif %}
+      {% if tag %}
+         <span class="badge bg-secondary"><i class="fa-solid fa-tags"></i> {{ tag }} ({{ tag.post_set.count }})</span>
+      {% endif %}
   </h1>
   {% if post_list.exists %}
     {% for p in post_list %}
@@ -42,11 +45,10 @@
           {{p.content| truncatewords:45}}
         </p>
 
-        {% if p.tags.exits %}
-          <i class="fa-solid fa-tags"></i>
+        {% if p.tags.exists %}
           {% for tag in p.tags.all %}
              <a href="{{ tag.get_absolute_url }}">
-               <span class="badge bg-secondary">{{ tag }}</span>
+               <span class="badge bg-secondary"><i class="fa-solid fa-tags"></i> {{ tag }}</span>
              </a>
           {% endfor %}
           <br>
