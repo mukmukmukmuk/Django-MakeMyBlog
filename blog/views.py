@@ -1,17 +1,11 @@
-from django.views.generic import ListView,DetailView,CreateView
+from typing import Any
+from django import http
+from django.http.response import HttpResponse
+from django.views.generic import ListView,DetailView,CreateView,UpdateView
 from .models import Post,Category,Tag
 from django.shortcuts import render,redirect
 from django.contrib.auth.mixins import LoginRequiredMixin,UserPassesTestMixin
-#def index(request):
-#    posts=Post.objects.all().order_by('-pk')
-#    return render(
-#        request,
-#        'blog/post_list.html',
-#        {
-#            'posts':posts,
-#
-#        }
-#    )
+from django.core.exceptions import PermissionDenied
 
 def category_page(request,slug):
     if slug=='no_category':
@@ -81,3 +75,14 @@ class PostCreate(LoginRequiredMixin,UserPassesTestMixin, CreateView):
         else:
             return redirect('/blog/')
     
+class PostUpdate(LoginRequiredMixin,UpdateView):
+    model = Post
+    fields = ['title','hook_text','content','head_image','file_upload','category','tags']
+
+    template_name='blog/post_update_form.html'
+    
+    def dispatch(self,request, *args: Any, **kwargs: Any) -> HttpResponse:
+        if request.user.is_authenticated and request.user == self.get_object().author:
+            return super().dispatch(request, *args, **kwargs)
+        else:
+            raise PermissionDenied
