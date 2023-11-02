@@ -1,6 +1,7 @@
-from django.views.generic import ListView,DetailView
+from django.views.generic import ListView,DetailView,CreateView
 from .models import Post,Category,Tag
-from django.shortcuts import render
+from django.shortcuts import render,redirect
+from django.contrib.auth.mixins import LoginRequiredMixin
 #def index(request):
 #    posts=Post.objects.all().order_by('-pk')
 #    return render(
@@ -65,14 +66,15 @@ class PostDetail(DetailView):
         context['no_category_post_count'] = Post.objects.filter(category=None).count()
         return context
 
-'''
-def single_post_page(request,pk):
-    post=Post.objects.get(pk=pk)
-    return render(
-        request,
-        'blog/post_detail.html',
-        {
-            'post':post
-        }
-    )
-'''
+class PostCreate(LoginRequiredMixin, CreateView):
+    model=Post
+    fields=['title','hook_text','content','head_image','file_upload','category']
+
+    def form_valid(self, form):
+        current_user=self.request.user
+        if current_user.is_authenticated:
+            form.instance.author = current_user
+            return super().form_valid(form)
+        else:
+            return redirect('/blog/')
+    
