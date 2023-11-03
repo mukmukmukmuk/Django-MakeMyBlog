@@ -8,6 +8,10 @@
     <form method="post" enctype="multipart/form-data">{% csrf_token %}
         <table>
             {{ form }}
+            <tr>
+                <th><label for="id_tags">Tags:</label></th>
+                <td><input type="text" name="tags" id="id_tags" value="{{ tags_str_default }}"></td>
+            </tr>
         </table>
         <button class="btn btn-primary" type="submit">Submit</button>
     </form>

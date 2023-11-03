@@ -77,9 +77,7 @@ class PostCreate(LoginRequiredMixin,UserPassesTestMixin, CreateView):
 
             tags=self.request.POST.get('tags')
             if tags:
-                tags = tags.strip().replace(',',';')
-                tags_list=tags.split(';')
-
+                tags_list = tags.strip().replace(',',';').split(';')
                 for t in tags_list:
                     t=t.strip()
                     tag, is_tag_created = Tag.objects.get_or_create(name=t)
@@ -88,20 +86,38 @@ class PostCreate(LoginRequiredMixin,UserPassesTestMixin, CreateView):
                         tag.save()
                     self.object.tags.add(tag)
             return response
-
-
-            return 
         else:
             return redirect('/blog/')
     
 class PostUpdate(LoginRequiredMixin,UpdateView):
     model = Post
-    fields = ['title','hook_text','content','head_image','file_upload','category','tags']
+    fields = ['title','hook_text','content','head_image','file_upload','category']
 
     template_name='blog/post_update_form.html'
     
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context=super().get_context_data()
+        if self.object.tags.exists():
+            context['tags_str_default']= '; '.join([t.name for t in self.object.tags.all()])
+        return context
+
     def dispatch(self,request, *args: Any, **kwargs: Any) -> HttpResponse:
         if request.user.is_authenticated and request.user == self.get_object().author:
             return super().dispatch(request, *args, **kwargs)
         else:
             raise PermissionDenied
+        
+    def form_valid(self, form):
+        response=super().form_valid(form)
+        self.object.tags.clear()
+        tags=self.request.POST.get('tags')
+        if tags:
+            tags_list = tags.strip().replace(',',';').split(';')
+            for t in tags_list:
+                t=t.strip()
+                tag, is_tag_created = Tag.objects.get_or_create(name=t)
+                if is_tag_created:
+                    tag.slug=slugify(t,allow_unicode=True)
+                    tag.save()
+                self.object.tags.add(tag)
+        return response
