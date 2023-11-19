@@ -1,3 +1,4 @@
+{% load socialaccount %}
 <!-- navbar start-->
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
   <div class="container">
@@ -86,20 +87,20 @@
       <div class="modal-body">
         <div class="row gy-2">
           <div class="col-md-6 d-grid gap-2">
-            <button type="button" class="btn btn-outline-dark btn-sm">
-              <i class="fa-brands fa-google"></i>&nbsp&nbsp Log in with
-              Google
-            </button>
+            <a
+              role="button"
+              class="btn btn-outline-dark btn-sm"
+              href="{% provider_login_url 'google' %}"
+            >
+              <i class="fa-brands fa-google"></i>&nbsp&nbsp Log in with Google
+            </a>
             <button type="button" class="btn btn-outline-dark btn-sm">
               <i class="fa-regular fa-envelope"></i>&nbsp&nbsp Log in with
               E-mail
             </button>
           </div>
           <div class="col-md-6 d-grid">
-            <button
-              type="button"
-              class="btn btn-outline-dark btn-sm mb-auto"
-            >
+            <button type="button" class="btn btn-outline-dark btn-sm mb-auto">
               <i class="fa-regular fa-envelope"></i>&nbsp&nbsp Sign Up with
               E-mail
             </button>
@@ -107,11 +108,7 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button
-          type="button"
-          class="btn btn-primary"
-          data-bs-dismiss="modal"
-        >
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">
           Close
         </button>
       </div>
