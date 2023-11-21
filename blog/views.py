@@ -10,6 +10,15 @@ from django.utils.text import slugify
 from .forms import CommentForm
 from django.shortcuts import get_object_or_404
 
+def delete_comment(request,pk):
+    comment=get_object_or_404(Comment,pk=pk)
+    post=comment.post
+    if request.user.is_authenticated and request.user==comment.author:
+        comment.delete()
+        return redirect(post.get_absolute_url())
+    else:
+        raise PermissionDenied
+
 def new_comment(request, pk):
     if request.user.is_authenticated:
         post=get_object_or_404(Post,pk=pk)
