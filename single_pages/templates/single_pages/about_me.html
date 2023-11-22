@@ -1,17 +1,76 @@
-<!doctype html>
-<html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <title>개발괴발</title>
-</head>
-<body>
-    <nav>
-        <a href="/blog/">Blog</a>
-        <a href="/about_me/">About me</a>
-    </nav>
-    <h1>안녕하세요. 개발 괴발 입니다</h1>
-    <h2>이력</h2>
-    <h2>portfolio</h2>
-    <h3>아직 공사중입니다.</h3>
-</body>
+<!DOCTYPE html>
+<html lang="ko" xmlns:a="http://www.w3.org/1999/html">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>About 나 강승묵</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <style>
+       
+    </style>
+  </head>
+
+  <body>
+    {% include 'blog/navbar.html' %}
+    <section>
+        <div class="container mt-4">
+            <div class="row">
+                <div class="col-lg-8">
+                    <h1>안녕하세요. 야옹입니다.</h1>
+                    <br>
+                    <p class="lead">
+                        수영과 음악, 컴퓨터를 좋아해요.
+                    </p>
+                    <ul>
+                        <li>WORK EXPERIENCE</li>
+                        <ul>
+                            <li>인생</li>
+                        </ul>
+                        <li>EDUCATION</li>
+                        <ul>
+                            <li>서강대</li>
+                            <li>진곽</li>
+                            <li>산곡남중</li>
+                        </ul>
+                        <li>PUBLISH</li>
+                        <ul>
+                            <li>DO IT DJANGO</li>
+                        </ul>
+                    </ul>
+                </div>
+                <div class="col-lg-4">
+                    <img class="img-fluid" src="https://picsum.photos/id/177/300/500" alt="">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h1>PORTFOLIO</h1>
+                </div>
+            </div>
+        </div>
+    </section>
+        
+    <div class="fixed-bottom mt-5">
+        {% include 'blog/footer.html' %}
+    </div>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://kit.fontawesome.com/719f15b67c.js"
+      crossorigin="anonymous"
+    ></script>
+  </body>
 </html>
