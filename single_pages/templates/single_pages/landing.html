@@ -1,16 +1,74 @@
-<!doctype html>
-<html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <title>개발괴발</title>
-</head>
-<body>
-    <nav>
-        <a href="/blog/">Blog</a>
-        <a href="/about_me/">About me</a>
-    </nav>
-    <h1>안녕하세요. 개발 괴발 입니다</h1>
-    <h2>대문 페이지</h2>
-    <h3>아직 공사중입니도로록</h3>
-</body>
+<!DOCTYPE html>
+<html lang="ko" xmlns:a="http://www.w3.org/1999/html">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Do It Django</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <style>
+        body {
+            /* The image used */
+            background: url("https://picsum.photos/id/10/2500/1667") no-repeat center center fixed;
+            -webkit-background-size : cover;
+            -moz-background-size: cover;
+            background-size: cover;
+            -o-background-size:cover;
+          }
+        .card{
+            background-color:rgba(255,255,255,0.6);
+        }
+    </style>
+  </head>
+
+  <body>
+    {% include 'blog/navbar.html' %}
+    <section>
+        <div class="container">
+            <div class="row justify-content-between">
+                <div class="col-lg-6 text-light">
+                    <h1 class="mt-5">Do It Django</h1>
+                    <p>파이썬 진영의 가장 대표적인 웹프레임워크 중 하나인 django를 이용해 블로그를 만들어 봤어요</p>
+                </div>
+                <div class="col-lg-5 mt-5">
+                    <h2 class="text-light">Blog - Recent posts</h2>
+                    {% for post in  recent_posts%}
+                        <div class="card mt-1">
+                            <div class="card-body">
+                                <h6><a href="{{post.get_absolute_url}}" class="text-decoration-none text-dark">{{post.title}}</a></h6>
+                                <span class="text-dark badge badge-pill badge-light float-end">
+                                    <img src="{{post.get_avatar_url}}" width="20px" alt="{{post.author}}" class="ms-1 rounded-circle">
+                                    {{post.author.username}}
+                                    &nbsp;
+                                    &nbsp;
+                                    {{post.created_at}}
+                                </span>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+
+        </div>
+
+        
+    </section>
+    <div class="fixed-bottom">
+        {% include 'blog/footer.html' %}
+    </div>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://kit.fontawesome.com/719f15b67c.js"
+      crossorigin="anonymous"
+    ></script>
+  </body>
 </html>
