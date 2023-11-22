@@ -10,59 +10,258 @@
       integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
       crossorigin="anonymous"
     />
-    <style>
-       
-    </style>
+    <style></style>
   </head>
 
   <body>
     {% include 'blog/navbar.html' %}
     <section>
-        <div class="container mt-4">
-            <div class="row">
-                <div class="col-lg-8">
-                    <h1>안녕하세요. 야옹입니다.</h1>
-                    <br>
-                    <p class="lead">
-                        수영과 음악, 컴퓨터를 좋아해요.
-                    </p>
-                    <ul>
-                        <li>WORK EXPERIENCE</li>
-                        <ul>
-                            <li>인생</li>
-                        </ul>
-                        <li>EDUCATION</li>
-                        <ul>
-                            <li>서강대</li>
-                            <li>진곽</li>
-                            <li>산곡남중</li>
-                        </ul>
-                        <li>PUBLISH</li>
-                        <ul>
-                            <li>DO IT DJANGO</li>
-                        </ul>
-                    </ul>
-                </div>
-                <div class="col-lg-4">
-                    <img class="img-fluid" src="https://picsum.photos/id/177/300/500" alt="">
-                </div>
-            </div>
+      <div class="container mt-4">
+        <div class="row">
+          <div class="col-lg-8">
+            <h1>안녕하세요. 야옹입니다.</h1>
+            <br />
+            <p class="lead">수영과 음악, 컴퓨터를 좋아해요.</p>
+            <ul>
+              <li>WORK EXPERIENCE</li>
+              <ul>
+                <li>인생</li>
+              </ul>
+              <li>EDUCATION</li>
+              <ul>
+                <li>서강대</li>
+                <li>진곽</li>
+                <li>산곡남중</li>
+              </ul>
+              <li>PUBLISH</li>
+              <ul>
+                <li>DO IT DJANGO</li>
+              </ul>
+            </ul>
+          </div>
+          <div class="col-lg-4">
+            <img
+              class="img-fluid"
+              src="https://picsum.photos/id/177/300/500"
+              alt=""
+            />
+          </div>
         </div>
+      </div>
     </section>
 
-    <section class="bg-light">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <h1>PORTFOLIO</h1>
-                </div>
-            </div>
+    <section class="bg-light" style="margin-bottom: 130px">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <h1>PORTFOLIO</h1>
+          </div>
         </div>
+      </div>
+      <div class="row">
+        <!--Card 1-->
+        <div class="col-lg-4">
+          <div
+            class="card mt-1"
+            data-bs-toggle="modal"
+            data-bs-target="#firstModal"
+          >
+            <img
+              class="card-img-top"
+              src="https://picsum.photos/id/20/200/150"
+              alt=""
+            />
+            <div class="card-body">
+              <h5 class="card-title">주제 1</h5>
+              <p>주저리주저리 이러쿵저러쿵 1</p>
+            </div>
+          </div>
+        </div>
+        <!--Card 2-->
+        <div class="col-lg-4">
+          <div
+            class="card mt-1"
+            data-bs-toggle="modal"
+            data-bs-target="#secondModal"
+          >
+            <img
+              class="card-img-top"
+              src="https://picsum.photos/id/23/200/150"
+              alt=""
+            />
+            <div class="card-body">
+              <h5 class="card-title">주제 2</h5>
+              <p>주저리주저리 이러쿵저러쿵 2</p>
+            </div>
+          </div>
+        </div>
+        <!--Card 3-->
+        <div class="col-lg-4">
+          <div
+            class="card mt-1"
+            data-bs-toggle="modal"
+            data-bs-target="#thirdModal"
+          >
+            <img
+              class="card-img-top"
+              src="https://picsum.photos/id/21/200/150"
+              alt=""
+            />
+            <div class="card-body">
+              <h5 class="card-title">주제 3</h5>
+              <p>주저리주저리 이러쿵저러쿵 4</p>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
-        
-    <div class="fixed-bottom mt-5">
-        {% include 'blog/footer.html' %}
+    <!--Modal 1-->
+    <div
+      class="modal fade"
+      id="firstModal"
+      data-bs-backdrop="static"
+      data-bs-keyboard="false"
+      tabindex="-1"
+      aria-labelledby="firstModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="firstModalLabel">
+              파이썬으로 통계업무 자동화하기
+            </h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+              <div class="col-lg-7">
+                <img class="img-fluid" src="https://picsum.photos/id/20/400" />
+              </div>
+              <div class="col-lg-5">
+                <p>
+                  Python, Django, Pandas, python-docx로 통계업무 자동화한 내용을
+                  파이콘에서 발표했습니다.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
+
+    <!--Modal 2-->
+    <div
+      class="modal fade"
+      id="secondModal"
+      data-bs-backdrop="static"
+      data-bs-keyboard="false"
+      tabindex="-1"
+      aria-labelledby="secondModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="secondModalLabel">
+              파이썬으로 통계업무 자동화하기
+            </h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+              <div class="col-lg-7">
+                <img class="img-fluid" src="https://picsum.photos/id/23/400" />
+              </div>
+              <div class="col-lg-5">
+                <p>
+                  Python, Django, Pandas, python-docx로 통계업무 자동화한 내용을
+                  파이콘에서 발표했습니다.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--Modal 3-->
+    <div
+      class="modal fade"
+      id="thirdModal"
+      data-bs-backdrop="static"
+      data-bs-keyboard="false"
+      tabindex="-1"
+      aria-labelledby="thirdModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="thirdModalLabel">
+              파이썬으로 통계업무 자동화하기
+            </h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+              <div class="col-lg-7">
+                <img class="img-fluid" src="https://picsum.photos/id/21/400" />
+              </div>
+              <div class="col-lg-5">
+                <p>
+                  Python, Django, Pandas, python-docx로 통계업무 자동화한 내용을
+                  파이콘에서 발표했습니다.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% include 'blog/footer.html' %}
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
