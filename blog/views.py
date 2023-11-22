@@ -1,5 +1,6 @@
 from typing import Any
 from django import http
+from django.db.models.query import QuerySet
 from django.http.response import HttpResponse
 from django.views.generic import ListView,DetailView,CreateView,UpdateView
 from .models import Post,Category,Tag,Comment
@@ -9,6 +10,7 @@ from django.core.exceptions import PermissionDenied
 from django.utils.text import slugify
 from .forms import CommentForm
 from django.shortcuts import get_object_or_404
+from django.db.models import Q
 
 def delete_comment(request,pk):
     comment=get_object_or_404(Comment,pk=pk)
@@ -22,7 +24,6 @@ def delete_comment(request,pk):
 def new_comment(request, pk):
     if request.user.is_authenticated:
         post=get_object_or_404(Post,pk=pk)
-
         if request.method == 'POST':
             comment_form=CommentForm(request.POST)
             if comment_form.is_valid():
@@ -161,3 +162,19 @@ class CommentUpdate(LoginRequiredMixin, UpdateView):
             return super().dispatch(request, *args, **kwargs)
         else:
             raise PermissionDenied
+        
+class PostSearch(PostList):
+    paginate_by=None
+
+    def get_queryset(self) -> QuerySet[Any]:
+        q=self.kwargs['q']
+        post_list=Post.objects.filter(
+            Q(title__contains=q) | Q(tags__name__contains=q)
+        ).distinct()
+        return post_list
+    
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context=super().get_context_data(object_list=object_list, **kwargs)
+        q=self.kwargs['q']
+        context['search_info'] = f'Search: {q} ({self.get_queryset().count()}개)'
+        return context
