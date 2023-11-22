@@ -38,6 +38,12 @@
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
                 >
+                {% if user.socialaccount_set.all.0.get_avatar_url %}
+                    <img class="rounded-circle" width="25px" src="{{user.socialaccount_set.all.0.get_avatar_url}}" alt="">
+                {% else %}
+                    <img class="rounded-circle" width="25px" src="https://doitdjango.com/avatar/id/1782/11c26ea9746f759a/svg/{{user.email}}" alt="">
+                {% endif %}
+                &nbsp;
                 {{ user.username }}
                 </a>
                 <ul class="dropdown-menu">
