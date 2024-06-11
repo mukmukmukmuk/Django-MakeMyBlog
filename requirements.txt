@@ -10,7 +10,7 @@ django-allauth==0.58.2
 django-crispy-forms==2.1
 django-extensions==3.2.3
 django-markdownx==4.0.5
-gunicorn==21.2.0
+gunicorn==22.0.0
 idna==3.6
 Markdown==3.5.1
 oauthlib==3.2.2
